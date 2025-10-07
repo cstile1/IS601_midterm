@@ -1,4 +1,3 @@
-```markdown
 # IS601 Midterm Project - Advanced Calculator
 
 ## Overview
