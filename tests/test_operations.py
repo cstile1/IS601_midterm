@@ -23,3 +23,8 @@ def test_power():
 
 def test_root_square():
     assert operations.Root.execute(9, 2) == 3
+
+def test_root_invalid():
+    # b = 0 is invalid, should raise ValueError
+    with pytest.raises(ValueError):
+        operations.Root.execute(9, 0)
