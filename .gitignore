@@ -1,0 +1,27 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Environment variables file
+.env
+
+# Logs and saved history
+*.log
+*.csv
+logs/
+history/
+
+# Test/coverage output
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Editor/IDE settings
+.vscode/
+.idea/
+
+# Mac system files
+.DS_Store
