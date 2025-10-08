@@ -35,3 +35,14 @@ def test_modulus_basic():
 def test_modulus_by_zero_raises():
     with pytest.raises(ZeroDivisionError):
         operations.Modulus.execute(5, 0)
+
+def test_int_divide_basic():
+    assert operations.IntDivide.execute(7, 2) == 3
+
+def test_int_divide_negative_flooring():
+    # Python's // operator floors toward -infinity
+    assert operations.IntDivide.execute(-7, 2) == -4
+
+def test_int_divide_by_zero_raises():
+    with pytest.raises(ZeroDivisionError):
+        operations.IntDivide.execute(7, 0)

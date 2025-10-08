@@ -56,3 +56,11 @@ class Modulus:
             raise ZeroDivisionError("Cannot modulus by zero")
         return a % b
 
+class IntDivide:
+    """Return integer division a // b. Raises ZeroDivisionError when b == 0."""
+    @staticmethod
+    def execute(a, b):
+        if b == 0:
+            raise ZeroDivisionError("Cannot int_divide by zero")
+        return a // b
+
