@@ -11,6 +11,10 @@ class OperationFactory:
         "divide": operations.Divide,
         "power": operations.Power,
         "root": operations.Root,
+        "modulus": operations.Modulus,
+        "int_divide": operations.IntDivide,
+        "percent": operations.Percent,
+        "abs_diff": operations.AbsDiff,
     }
 
     @classmethod

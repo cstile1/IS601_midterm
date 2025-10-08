@@ -15,3 +15,10 @@ def test_factory_returns_correct_classes():
 def test_factory_unknown_operation():
     with pytest.raises(ValueError):
         OperationFactory.get("banana")
+
+def test_factory_new_operations():
+    """Test that new operations are correctly mapped in the Factory"""
+    assert OperationFactory.get("modulus") is operations.Modulus
+    assert OperationFactory.get("int_divide") is operations.IntDivide
+    assert OperationFactory.get("percent") is operations.Percent
+    assert OperationFactory.get("abs_diff") is operations.AbsDiff
