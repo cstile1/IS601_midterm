@@ -47,3 +47,12 @@ class Root:
         if b == 0:
             raise ValueError("Cannot take zeroth root")
         return a ** (1 / b)
+    
+class Modulus:
+    """Return a % b. Raises ZeroDivisionError when b == 0."""
+    @staticmethod
+    def execute(a, b):
+        if b == 0:
+            raise ZeroDivisionError("Cannot modulus by zero")
+        return a % b
+

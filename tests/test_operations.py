@@ -28,3 +28,10 @@ def test_root_invalid():
     # b = 0 is invalid, should raise ValueError
     with pytest.raises(ValueError):
         operations.Root.execute(9, 0)
+
+def test_modulus_basic():
+    assert operations.Modulus.execute(10, 3) == 1
+
+def test_modulus_by_zero_raises():
+    with pytest.raises(ZeroDivisionError):
+        operations.Modulus.execute(5, 0)
