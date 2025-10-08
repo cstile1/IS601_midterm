@@ -72,3 +72,9 @@ class Percent:
             raise ZeroDivisionError("Cannot compute percentage with denominator zero")
         return (a / b) * 100
 
+class AbsDiff:
+    """Return absolute difference |a - b|."""
+    @staticmethod
+    def execute(a, b):
+        return abs(a - b)
+

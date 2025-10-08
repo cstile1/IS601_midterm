@@ -58,3 +58,12 @@ def test_percent_whole():
 def test_percent_by_zero_raises():
     with pytest.raises(ZeroDivisionError):
         operations.Percent.execute(5, 0)
+
+def test_abs_diff_basic():
+    assert operations.AbsDiff.execute(10, 7) == 3
+
+def test_abs_diff_order_irrelevant():
+    assert operations.AbsDiff.execute(7, 10) == 3
+
+def test_abs_diff_with_negative():
+    assert operations.AbsDiff.execute(-2, 5) == 7
