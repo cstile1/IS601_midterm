@@ -46,3 +46,15 @@ def test_int_divide_negative_flooring():
 def test_int_divide_by_zero_raises():
     with pytest.raises(ZeroDivisionError):
         operations.IntDivide.execute(7, 0)
+
+def test_percent_basic():
+    # 50 is 25% of 200
+    assert operations.Percent.execute(50, 200) == 25
+
+def test_percent_whole():
+    # 200 is 100% of 200
+    assert operations.Percent.execute(200, 200) == 100
+
+def test_percent_by_zero_raises():
+    with pytest.raises(ZeroDivisionError):
+        operations.Percent.execute(5, 0)

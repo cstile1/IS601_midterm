@@ -64,3 +64,11 @@ class IntDivide:
             raise ZeroDivisionError("Cannot int_divide by zero")
         return a // b
 
+class Percent:
+    """Return (a / b) * 100. Raises ZeroDivisionError when b == 0."""
+    @staticmethod
+    def execute(a, b):
+        if b == 0:
+            raise ZeroDivisionError("Cannot compute percentage with denominator zero")
+        return (a / b) * 100
+
