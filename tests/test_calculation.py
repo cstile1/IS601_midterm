@@ -2,6 +2,7 @@
 import pytest
 from app.calculation import OperationFactory
 from app import operations
+from app.calculation import Calculation
 
 def test_factory_returns_correct_classes():
     """This tests whether the Factory is working correctly"""
@@ -22,3 +23,10 @@ def test_factory_new_operations():
     assert OperationFactory.get("int_divide") is operations.IntDivide
     assert OperationFactory.get("percent") is operations.Percent
     assert OperationFactory.get("abs_diff") is operations.AbsDiff
+
+def test_calculation_fields_are_stored_correctly():
+    c = Calculation("add", 2, 3, 5)
+    assert c.operation == "add"
+    assert c.a == 2
+    assert c.b == 3
+    assert c.result == 5
