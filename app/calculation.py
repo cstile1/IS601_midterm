@@ -1,7 +1,7 @@
 # app/calculation.py
 from app import operations
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, UTC 
 
 @dataclass(frozen=True)
 class Calculation:
@@ -10,7 +10,7 @@ class Calculation:
     a: float
     b: float
     result: float
-    timestamp: datetime = datetime.utcnow()
+    timestamp: datetime = datetime.now(UTC)
 
 class OperationFactory:
     """Factory that returns the correct operation class based on a string name"""
