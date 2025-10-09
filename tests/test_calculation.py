@@ -86,3 +86,18 @@ def test_history_edge_cases():
     # redo once works, second redo fails
     assert h.redo() is True
     assert h.redo() is False
+
+def test_history_items_returns_copy():
+    from app.calculation import Calculation
+    from app.history import History
+
+    h = History()
+    h.add(Calculation("add", 1, 2, 3))
+    items_copy = h.items()
+
+    # The copy should contain the same data
+    assert len(items_copy) == 1
+    assert items_copy[0].result == 3
+
+    # But it should be a separate object (not the same list)
+    assert items_copy is not h._items
