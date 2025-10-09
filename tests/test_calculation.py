@@ -4,6 +4,7 @@ from app.calculation import OperationFactory
 from app import operations
 from app.calculation import Calculation
 from app.calculator_memento import CalculatorMemento
+from app.history import History
 
 def test_factory_returns_correct_classes():
     """This tests whether the Factory is working correctly"""
@@ -44,3 +45,44 @@ def test_memento_restores_history_snapshot():
     restored = memento.get_state()
     assert len(restored) == 1
     assert restored[0].result == 3
+
+def test_history_add_and_undo_redo_roundtrip():
+    from app.calculation import Calculation
+    h = History()
+
+    h.add(Calculation("add", 2, 3, 5))
+    h.add(Calculation("multiply", 3, 4, 12))
+    assert h.size() == 2
+
+    # Undo should go back to 1
+    assert h.undo() is True
+    assert h.size() == 1
+
+    # Redo should go forward again
+    assert h.redo() is True
+    assert h.size() == 2
+
+def test_history_clear_and_undo():
+    from app.calculation import Calculation
+    h = History()
+    h.add(Calculation("power", 2, 3, 8))
+    h.add(Calculation("root", 9, 2, 3))
+    assert h.size() == 2
+
+    h.clear()
+    assert h.size() == 0
+    assert h.undo() is True
+    assert h.size() == 2
+
+def test_history_edge_cases():
+    from app.calculation import Calculation
+    h = History()
+    # nothing to undo yet
+    assert h.undo() is False
+    # add one, undo once, second undo fails
+    h.add(Calculation("add", 1, 1, 2))
+    assert h.undo() is True
+    assert h.undo() is False
+    # redo once works, second redo fails
+    assert h.redo() is True
+    assert h.redo() is False
