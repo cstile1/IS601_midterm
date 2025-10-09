@@ -3,6 +3,7 @@ import pytest
 from app.calculation import OperationFactory
 from app import operations
 from app.calculation import Calculation
+from app.calculator_memento import CalculatorMemento
 
 def test_factory_returns_correct_classes():
     """This tests whether the Factory is working correctly"""
@@ -30,3 +31,16 @@ def test_calculation_fields_are_stored_correctly():
     assert c.a == 2
     assert c.b == 3
     assert c.result == 5
+
+def test_memento_restores_history_snapshot():
+    from app.calculation import Calculation
+    history_state = [Calculation("add", 1, 2, 3)]
+    memento = CalculatorMemento(history_state)
+
+    # modify original list after snapshot
+    history_state.append(Calculation("multiply", 2, 3, 6))
+
+    # memento should still have the original single item
+    restored = memento.get_state()
+    assert len(restored) == 1
+    assert restored[0].result == 3
