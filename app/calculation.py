@@ -1,5 +1,16 @@
 # app/calculation.py
 from app import operations
+from dataclasses import dataclass
+from datetime import datetime
+
+@dataclass(frozen=True)
+class Calculation:
+    """Represents one calculation with inputs, result, and timestamp."""
+    operation: str
+    a: float
+    b: float
+    result: float
+    timestamp: datetime = datetime.utcnow()
 
 class OperationFactory:
     """Factory that returns the correct operation class based on a string name"""
