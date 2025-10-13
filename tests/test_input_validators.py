@@ -21,3 +21,16 @@ def test_validate_number_rejects_invalid_input():
     cfg = CalculatorConfig(max_input_value=Decimal("10"))
     with pytest.raises(ValidationError):
         InputValidator.validate_number("abc", cfg)
+
+def test_validate_number_rejects_overflow():
+    cfg = CalculatorConfig(max_input_value=Decimal("10"))
+    with pytest.raises(ValidationError):
+        InputValidator.validate_number(Decimal("11"), cfg)  # exceeds max
+
+def test_validate_number_trims_whitespace_and_signs():
+    cfg = CalculatorConfig(max_input_value=Decimal("100"))
+    assert InputValidator.validate_number("   -7.000  ", cfg) == Decimal("-7")
+
+def test_validate_number_handles_large_but_valid_value():
+    cfg = CalculatorConfig(max_input_value=Decimal("1000000"))
+    assert InputValidator.validate_number("999999.9999", cfg) == Decimal("999999.9999")
