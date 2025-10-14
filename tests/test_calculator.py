@@ -86,3 +86,12 @@ def test_calculator_undo_redo_flow():
     # redo should bring it back
     assert calc.redo() is True
     assert calc.history.size() == 2
+
+def test_calculator_clear_history():
+    calc = Calculator()
+    calc.calculate("add", 1, 2)
+    calc.calculate("multiply", 3, 4)
+    assert calc.history.size() == 2
+
+    calc.clear_history()
+    assert calc.history.size() == 0
