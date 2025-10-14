@@ -27,3 +27,8 @@ def test_calculator_divide_happy_and_zero_guard():
     # error path: divide by zero should raise ValidationError
     with pytest.raises(ValidationError):
         calc.calculate("divide", 5, 0)
+
+def test_calculator_power():
+    calc = Calculator()
+    # 2^3 = 8
+    assert calc.calculate("power", 2, 3) == 8
