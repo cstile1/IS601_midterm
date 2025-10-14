@@ -14,3 +14,7 @@ def test_calculator_add_and_history():
     assert len(items) == 1
     assert items[0].operation == "add"
     assert items[0].result == 5.00
+
+def test_calculator_multiply_minimal():
+    calc = Calculator()
+    assert calc.calculate("multiply", 2, 4) == 8
