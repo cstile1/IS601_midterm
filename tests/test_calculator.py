@@ -71,3 +71,18 @@ def test_calculator_rounding_precision():
     calc = Calculator(cfg)
     # 1 ÷ 3 = 0.333... → rounded to 3 places = 0.333
     assert calc.calculate("divide", 1, 3) == 0.333
+
+def test_calculator_undo_redo_flow():
+    calc = Calculator()
+    # make two calculations
+    calc.calculate("add", 1, 1)        # history size => 1
+    calc.calculate("multiply", 2, 3)   # history size => 2
+    assert calc.history.size() == 2
+
+    # undo should remove the last one
+    assert calc.undo() is True
+    assert calc.history.size() == 1
+
+    # redo should bring it back
+    assert calc.redo() is True
+    assert calc.history.size() == 2
