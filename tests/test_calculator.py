@@ -56,3 +56,11 @@ def test_calculator_int_divide_and_guard():
     # zero divisor should raise
     with pytest.raises(ValidationError):
         calc.calculate("int_divide", 7, 0)
+
+def test_calculator_percent_and_guard():
+    calc = Calculator()
+    # happy path: 50 is 25% of 200
+    assert calc.calculate("percent", 50, 200) == 25
+    # zero denominator should raise
+    with pytest.raises(ValidationError):
+        calc.calculate("percent", 5, 0)
