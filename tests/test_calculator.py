@@ -64,3 +64,10 @@ def test_calculator_percent_and_guard():
     # zero denominator should raise
     with pytest.raises(ValidationError):
         calc.calculate("percent", 5, 0)
+
+def test_calculator_rounding_precision():
+    # set precision = 3 decimal places
+    cfg = CalculatorConfig(precision=3)
+    calc = Calculator(cfg)
+    # 1 ÷ 3 = 0.333... → rounded to 3 places = 0.333
+    assert calc.calculate("divide", 1, 3) == 0.333
