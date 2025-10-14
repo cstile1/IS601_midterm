@@ -48,3 +48,11 @@ def test_calculator_modulus_and_guard():
     # zero divisor should raise
     with pytest.raises(ValidationError):
         calc.calculate("modulus", 10, 0)
+
+def test_calculator_int_divide_and_guard():
+    calc = Calculator()
+    # happy path (integer/floor division)
+    assert calc.calculate("int_divide", 7, 2) == 3
+    # zero divisor should raise
+    with pytest.raises(ValidationError):
+        calc.calculate("int_divide", 7, 0)
