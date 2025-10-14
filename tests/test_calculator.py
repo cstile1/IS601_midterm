@@ -40,3 +40,11 @@ def test_calculator_root_and_zero_guard():
     # error path: zeroth root should raise
     with pytest.raises(ValidationError):
         calc.calculate("root", 9, 0)
+
+def test_calculator_modulus_and_guard():
+    calc = Calculator()
+    # happy path
+    assert calc.calculate("modulus", 10, 3) == 1
+    # zero divisor should raise
+    with pytest.raises(ValidationError):
+        calc.calculate("modulus", 10, 0)
