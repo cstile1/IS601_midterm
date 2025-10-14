@@ -32,3 +32,11 @@ def test_calculator_power():
     calc = Calculator()
     # 2^3 = 8
     assert calc.calculate("power", 2, 3) == 8
+
+def test_calculator_root_and_zero_guard():
+    calc = Calculator()
+    # happy path: square root of 9 is 3
+    assert calc.calculate("root", 9, 2) == 3
+    # error path: zeroth root should raise
+    with pytest.raises(ValidationError):
+        calc.calculate("root", 9, 0)
